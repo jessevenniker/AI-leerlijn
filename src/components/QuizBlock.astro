@@ -1,0 +1,70 @@
+---
+interface Props {
+  question: string;
+  options: string[];
+  correctIndex: number;
+  feedbackCorrect: string;
+  feedbackWrong: string;
+  imageSrc?: string;
+}
+
+const { question, options, correctIndex, feedbackCorrect, feedbackWrong, imageSrc } = Astro.props;
+const id = Math.random().toString(36).slice(2, 8);
+---
+
+<div class="rounded-2xl border border-gray-200 bg-white p-6 my-6" id={`quiz-${id}`}>
+  {imageSrc && (
+    <img src={imageSrc} alt="" class="w-full rounded-xl mb-5 object-cover max-h-48" />
+  )}
+  <p class="font-bold text-base mb-4" style="color: var(--navy);">{question}</p>
+  <div class="flex flex-col gap-2.5">
+    {options.map((option, i) => (
+      <button
+        class="quiz-option w-full text-left px-5 py-3.5 rounded-xl border-2 border-gray-200 font-medium text-sm text-gray-700 transition-all hover:border-gray-300 hover:bg-gray-50 active:scale-[0.99]"
+        data-index={i}
+        data-correct={correctIndex}
+        data-correct-text={feedbackCorrect}
+        data-wrong-text={feedbackWrong}
+        data-quiz={id}
+      >
+        {option}
+      </button>
+    ))}
+  </div>
+  <div class="feedback mt-4 text-sm font-semibold hidden" id={`feedback-${id}`}></div>
+</div>
+
+<script>
+  document.querySelectorAll('.quiz-option').forEach((btn) => {
+    btn.addEventListener('click', function (this: HTMLButtonElement) {
+      const quizId = this.dataset.quiz!;
+      const correct = parseInt(this.dataset.correct!);
+      const chosen = parseInt(this.dataset.index!);
+      const feedback = document.getElementById(`feedback-${quizId}`)!;
+
+      document.querySelectorAll(`[data-quiz="${quizId}"]`).forEach((b) => {
+        (b as HTMLButtonElement).disabled = true;
+        (b as HTMLElement).classList.add('opacity-50');
+      });
+
+      if (chosen === correct) {
+        this.classList.remove('border-gray-200', 'opacity-50');
+        this.classList.add('opacity-100!');
+        this.style.borderColor = '#2BB5B8';
+        this.style.backgroundColor = '#E8F7F7';
+        this.style.color = '#1C3A4A';
+        feedback.textContent = '✓ ' + this.dataset.correctText!;
+        feedback.className = 'feedback mt-4 text-sm font-semibold';
+        feedback.style.color = '#2BB5B8';
+      } else {
+        this.classList.remove('border-gray-200', 'opacity-50');
+        this.classList.add('opacity-100!');
+        this.style.borderColor = '#E8714A';
+        this.style.backgroundColor = '#FEF0EA';
+        feedback.textContent = '✗ ' + this.dataset.wrongText!;
+        feedback.className = 'feedback mt-4 text-sm font-semibold';
+        feedback.style.color = '#E8714A';
+      }
+    });
+  });
+</script>

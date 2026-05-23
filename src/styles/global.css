@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --sand:      #FDF7EF;
+  --navy:      #1C3A4A;
+  --turquoise: #2BB5B8;
+  --mango:     #F5A623;
+  --coral:     #E8714A;
+  --mint-bg:   #E8F7F7;
+  --cream-bg:  #FEF3E2;
+}
+
+body {
+  background-color: var(--sand);
+  color: var(--navy);
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  color: var(--navy);
+}

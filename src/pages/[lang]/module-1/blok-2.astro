@@ -1,0 +1,63 @@
+---
+import ModuleLayout from '../../../layouts/ModuleLayout.astro';
+import QuizBlock from '../../../components/QuizBlock.astro';
+import { t, supportedLangs, type Lang } from '../../../i18n/index';
+
+export function getStaticPaths() {
+  return supportedLangs.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const i18n = t(lang);
+const blok = i18n.module1.blocks.blok2;
+---
+
+<ModuleLayout
+  title={blok.title}
+  currentBlock={2}
+  totalBlocks={4}
+  lang={lang}
+  currentPath={Astro.url.pathname}
+>
+  <div class="mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">Blok 02</p>
+    <h1 class="text-2xl font-extrabold leading-snug mb-3" style="color: var(--navy);">{blok.title}</h1>
+    <p class="text-gray-500 text-base leading-relaxed">{blok.intro}</p>
+  </div>
+
+  <!-- Visuele promptvergelijking -->
+  <div class="grid grid-cols-2 gap-3 mb-6">
+    <div class="rounded-2xl p-4 border border-gray-200">
+      <p class="text-xs font-semibold mb-2" style="color: var(--coral);">Vage vraag</p>
+      <p class="text-sm text-gray-600 italic">"Schrijf iets"</p>
+      <p class="text-xs text-gray-400 mt-2">AI weet niet wat je wil.</p>
+    </div>
+    <div class="rounded-2xl p-4 border-2" style="border-color: var(--turquoise); background-color: var(--mint-bg);">
+      <p class="text-xs font-semibold mb-2" style="color: var(--turquoise);">Goede vraag</p>
+      <p class="text-sm text-gray-700 italic">"Schrijf een kort gedicht over de zee, voor kinderen van 10 jaar"</p>
+    </div>
+  </div>
+
+  <img
+    src="/images/blok2/kind-typt.png"
+    alt="Kind typt een prompt in op de laptop in een schoolomgeving"
+    class="rounded-2xl w-full object-cover mb-6"
+    style="max-height: 220px;"
+  />
+
+  <QuizBlock
+    question={blok.quiz.question}
+    options={blok.quiz.options}
+    correctIndex={1}
+    feedbackCorrect={blok.quiz.feedback_correct}
+    feedbackWrong={blok.quiz.feedback_wrong}
+  />
+
+  <a
+    href={`/${lang}/module-1/blok-3/`}
+    class="block w-full text-center text-white font-bold text-base py-4 rounded-xl transition-opacity hover:opacity-90 active:scale-[0.99] mt-4"
+    style="background-color: var(--navy);"
+  >
+    Volgende blok →
+  </a>
+</ModuleLayout>

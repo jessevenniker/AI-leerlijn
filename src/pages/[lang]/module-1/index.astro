@@ -1,0 +1,47 @@
+---
+import ModuleLayout from '../../../layouts/ModuleLayout.astro';
+import { t, supportedLangs, type Lang } from '../../../i18n/index';
+
+export function getStaticPaths() {
+  return supportedLangs.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const i18n = t(lang);
+
+const blockIcons = ['01', '02', '03', '04'];
+---
+
+<ModuleLayout title={i18n.module1.title} lang={lang} currentPath={Astro.url.pathname}>
+
+  <div class="mb-8">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">Module 1 · Niveau 2</p>
+    <h1 class="text-2xl font-extrabold leading-snug mb-2" style="color: var(--navy);">{i18n.module1.title}</h1>
+    <p class="text-sm text-gray-400">{i18n.module1.duration} · {i18n.module1.level}</p>
+  </div>
+
+  <div class="space-y-3">
+    {Object.entries(i18n.module1.blocks).map(([key, block], i) => {
+      const num = i + 1;
+      return (
+        <a
+          href={`/${lang}/module-1/blok-${num}/`}
+          class="flex items-center gap-4 bg-white rounded-2xl p-5 border border-gray-200 hover:border-gray-300 transition-all group"
+        >
+          <div
+            class="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold text-white shrink-0"
+            style="background-color: var(--turquoise);"
+          >
+            {String(num).padStart(2, '0')}
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs text-gray-400 mb-0.5">{block.duration}</p>
+            <p class="font-semibold text-sm" style="color: var(--navy);">{block.title}</p>
+          </div>
+          <span class="text-gray-300 group-hover:text-gray-400 transition-colors text-lg">→</span>
+        </a>
+      );
+    })}
+  </div>
+
+</ModuleLayout>

@@ -1,0 +1,34 @@
+---
+interface Props {
+  lang: string;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+
+const langs = [
+  { code: 'nl', label: 'NL' },
+  { code: 'en', label: 'EN' },
+  { code: 'pap', label: 'PAP' },
+];
+
+function switchLang(targetLang: string) {
+  return currentPath.replace(`/${lang}/`, `/${targetLang}/`);
+}
+---
+
+<div class="flex gap-1">
+  {langs.map(({ code, label }) => (
+    <a
+      href={switchLang(code)}
+      class={`px-2.5 py-1 rounded-md text-xs font-semibold transition-colors ${
+        lang === code
+          ? 'text-white'
+          : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
+      }`}
+      style={lang === code ? 'background-color: var(--navy);' : ''}
+    >
+      {label}
+    </a>
+  ))}
+</div>

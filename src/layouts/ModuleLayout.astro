@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import ProgressBar from '../components/ProgressBar.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
+
+interface Props {
+  title: string;
+  currentBlock?: number;
+  totalBlocks?: number;
+  lang?: string;
+  currentPath?: string;
+}
+
+const { title, currentBlock = 0, totalBlocks = 4, lang = 'nl', currentPath = '' } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — AI Kompas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex flex-col" style="background-color: var(--sand);">
+
+    <header class="bg-white border-b border-gray-100 px-5 py-4 flex items-center justify-between sticky top-0 z-10">
+      <a href={`/${lang}/`} class="flex items-center gap-2 group">
+        <!-- Kompas icoon -->
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="13" stroke="#1C3A4A" stroke-width="1.5"/>
+          <circle cx="14" cy="14" r="2" fill="#2BB5B8"/>
+          <!-- Kompasnaald: boven = turquoise (noord), onder = coral (zuid) -->
+          <path d="M14 4 L16 14 L14 13 L12 14 Z" fill="#2BB5B8"/>
+          <path d="M14 24 L12 14 L14 15 L16 14 Z" fill="#E8714A"/>
+          <!-- Kleine streepjes N/Z/O/W -->
+          <line x1="14" y1="1.5" x2="14" y2="4" stroke="#1C3A4A" stroke-width="1.2"/>
+          <line x1="14" y1="24" x2="14" y2="26.5" stroke="#1C3A4A" stroke-width="1.2"/>
+          <line x1="1.5" y1="14" x2="4" y2="14" stroke="#1C3A4A" stroke-width="1.2"/>
+          <line x1="24" y1="14" x2="26.5" y2="14" stroke="#1C3A4A" stroke-width="1.2"/>
+        </svg>
+        <span class="font-extrabold text-lg tracking-tight" style="color: var(--navy);">AI Kompas</span>
+      </a>
+      <LanguageSwitch lang={lang} currentPath={currentPath} />
+    </header>
+
+    {currentBlock > 0 && (
+      <ProgressBar current={currentBlock} total={totalBlocks} />
+    )}
+
+    <main class="flex-1 px-4 py-8 max-w-2xl mx-auto w-full">
+      <slot />
+    </main>
+
+    <footer class="text-center text-xs text-gray-400 py-6 border-t border-gray-100">
+      AI Kompas · Educatieve AI-leerlijn voor scholen
+    </footer>
+
+  </body>
+</html>

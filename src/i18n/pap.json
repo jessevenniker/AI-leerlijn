@@ -1,0 +1,73 @@
+{
+  "site": {
+    "title": "",
+    "tagline": ""
+  },
+  "nav": {
+    "home": "",
+    "modules": "",
+    "teacher": ""
+  },
+  "module1": {
+    "title": "",
+    "duration": "",
+    "level": "",
+    "start": "",
+    "blocks": {
+      "blok1": {
+        "title": "",
+        "duration": "",
+        "intro": "",
+        "quiz": {
+          "question": "",
+          "options": ["", ""],
+          "feedback_correct": "",
+          "feedback_wrong": ""
+        }
+      },
+      "blok2": {
+        "title": "",
+        "duration": "",
+        "intro": "",
+        "quiz": {
+          "question": "",
+          "options": ["", ""],
+          "feedback_correct": "",
+          "feedback_wrong": ""
+        }
+      },
+      "blok3": {
+        "title": "",
+        "duration": "",
+        "intro": "",
+        "quiz": {
+          "question": "",
+          "options": ["", ""],
+          "feedback_correct": "",
+          "feedback_wrong": ""
+        }
+      },
+      "blok4": {
+        "title": "",
+        "duration": "",
+        "intro": "",
+        "quiz": {
+          "question": "",
+          "options": ["", ""],
+          "feedback_correct": "",
+          "feedback_wrong": ""
+        }
+      }
+    }
+  },
+  "certificate": {
+    "title": "",
+    "text": "",
+    "name_label": "",
+    "download": ""
+  },
+  "progress": {
+    "blok": "",
+    "van": ""
+  }
+}

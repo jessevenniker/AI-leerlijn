@@ -1,0 +1,72 @@
+---
+import ModuleLayout from '../../../layouts/ModuleLayout.astro';
+import QuizBlock from '../../../components/QuizBlock.astro';
+import { t, supportedLangs, type Lang } from '../../../i18n/index';
+
+export function getStaticPaths() {
+  return supportedLangs.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const i18n = t(lang);
+const blok = i18n.module1.blocks.blok4;
+---
+
+<ModuleLayout
+  title={blok.title}
+  currentBlock={4}
+  totalBlocks={4}
+  lang={lang}
+  currentPath={Astro.url.pathname}
+>
+  <div class="mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">Blok 04</p>
+    <h1 class="text-2xl font-extrabold leading-snug mb-3" style="color: var(--navy);">{blok.title}</h1>
+    <p class="text-gray-500 text-base leading-relaxed">{blok.intro}</p>
+  </div>
+
+  <!-- Scenario's -->
+  <div class="space-y-3 mb-6">
+    <div class="rounded-2xl p-4 border border-gray-200 bg-white">
+      <div class="flex items-start gap-3">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0 mt-0.5" style="background-color: var(--turquoise);">✓</div>
+        <div>
+          <p class="font-semibold text-sm mb-1" style="color: var(--navy);">Dit mag</p>
+          <p class="text-sm text-gray-500">AI vragen om een moeilijk woord uit te leggen, en dan zelf jouw antwoord schrijven.</p>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-2xl p-4 border border-gray-200 bg-white">
+      <div class="flex items-start gap-3">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0 mt-0.5" style="background-color: var(--coral);">✗</div>
+        <div>
+          <p class="font-semibold text-sm mb-1" style="color: var(--navy);">Dit mag niet</p>
+          <p class="text-sm text-gray-500">AI een heel opstel laten schrijven en dat inleveren alsof jij het hebt gemaakt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img
+    src="/images/blok4/ai-gereedschap.png"
+    alt="Kind schrijft zelf terwijl AI als hulpmiddel op de achtergrond staat"
+    class="rounded-2xl w-full object-cover mb-6"
+    style="max-height: 220px;"
+  />
+
+  <QuizBlock
+    question={blok.quiz.question}
+    options={blok.quiz.options}
+    correctIndex={0}
+    feedbackCorrect={blok.quiz.feedback_correct}
+    feedbackWrong={blok.quiz.feedback_wrong}
+  />
+
+  <a
+    href={`/${lang}/module-1/certificaat/`}
+    class="block w-full text-center text-white font-bold text-base py-4 rounded-xl transition-opacity hover:opacity-90 active:scale-[0.99] mt-4"
+    style="background-color: var(--turquoise);"
+  >
+    Module afgerond — haal je certificaat →
+  </a>
+</ModuleLayout>

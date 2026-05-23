@@ -1,0 +1,73 @@
+{
+  "site": {
+    "title": "AI Kompas",
+    "tagline": "Leerlingen leren richting vinden in een wereld met AI."
+  },
+  "nav": {
+    "home": "Home",
+    "modules": "Modules",
+    "teacher": "Leerkrachtgids"
+  },
+  "module1": {
+    "title": "Slim werken met AI, zonder vals te spelen",
+    "duration": "20 minuten",
+    "level": "Niveau 2 — 10 tot 13 jaar",
+    "start": "Begin module",
+    "blocks": {
+      "blok1": {
+        "title": "Wat kan AI wel en niet?",
+        "duration": "5 minuten",
+        "intro": "AI is een slim systeem dat heel veel heeft geleerd — maar het denkt niet zelf na.",
+        "quiz": {
+          "question": "Wie deed dit hier: een mens of een AI?",
+          "options": ["Een mens", "Een AI"],
+          "feedback_correct": "Goed gedaan!",
+          "feedback_wrong": "Probeer het nog eens."
+        }
+      },
+      "blok2": {
+        "title": "Hoe stel je een goede vraag?",
+        "duration": "5 minuten",
+        "intro": "Een goede vraag aan AI heet een prompt. Hoe beter jouw vraag, hoe beter het antwoord.",
+        "quiz": {
+          "question": "Welke prompt is beter?",
+          "options": ["Schrijf iets", "Schrijf een kort gedicht over de zee, in het Nederlands, voor kinderen van 10 jaar"],
+          "feedback_correct": "Ja! Meer details = beter antwoord.",
+          "feedback_wrong": "Kijk nog eens goed naar de twee opties."
+        }
+      },
+      "blok3": {
+        "title": "Hoe weet je of AI gelijk heeft?",
+        "duration": "5 minuten",
+        "intro": "AI maakt fouten. Dat is normaal. Jij moet altijd controleren wat AI zegt.",
+        "quiz": {
+          "question": "Klopt dit AI-antwoord of niet?",
+          "options": ["Het klopt", "Het klopt niet"],
+          "feedback_correct": "Super! Altijd controleren.",
+          "feedback_wrong": "Lees het antwoord nog eens goed."
+        }
+      },
+      "blok4": {
+        "title": "Wanneer helpt AI en wanneer is het valsspelen?",
+        "duration": "5 minuten",
+        "intro": "AI is een gereedschap, geen vervanger van jouw eigen denken.",
+        "quiz": {
+          "question": "Mag dit wel of niet?",
+          "options": ["Dit mag", "Dit mag niet"],
+          "feedback_correct": "Goed nagedacht!",
+          "feedback_wrong": "Denk nog eens na over wat de leraar wil leren."
+        }
+      }
+    }
+  },
+  "certificate": {
+    "title": "Gefeliciteerd!",
+    "text": "Je hebt module 1 afgerond.",
+    "name_label": "Naam",
+    "download": "Download certificaat"
+  },
+  "progress": {
+    "blok": "Blok",
+    "van": "van"
+  }
+}

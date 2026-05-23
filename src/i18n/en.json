@@ -1,0 +1,73 @@
+{
+  "site": {
+    "title": "AI Kompas",
+    "tagline": "Students learn to navigate a world with AI."
+  },
+  "nav": {
+    "home": "Home",
+    "modules": "Modules",
+    "teacher": "Teacher's Guide"
+  },
+  "module1": {
+    "title": "Working Smart with AI, Without Cheating",
+    "duration": "20 minutes",
+    "level": "Level 2 — Ages 10 to 13",
+    "start": "Start module",
+    "blocks": {
+      "blok1": {
+        "title": "What can AI do and not do?",
+        "duration": "5 minutes",
+        "intro": "AI is a smart system that has learned a lot — but it doesn't actually think.",
+        "quiz": {
+          "question": "Who did this: a human or an AI?",
+          "options": ["A human", "An AI"],
+          "feedback_correct": "Well done!",
+          "feedback_wrong": "Try again."
+        }
+      },
+      "blok2": {
+        "title": "How do you ask a good question?",
+        "duration": "5 minutes",
+        "intro": "A good question to AI is called a prompt. The better your question, the better the answer.",
+        "quiz": {
+          "question": "Which prompt is better?",
+          "options": ["Write something", "Write a short poem about the sea, in English, for children aged 10"],
+          "feedback_correct": "Yes! More details = better answer.",
+          "feedback_wrong": "Look carefully at both options again."
+        }
+      },
+      "blok3": {
+        "title": "How do you know if AI is correct?",
+        "duration": "5 minutes",
+        "intro": "AI makes mistakes. That's normal. You always need to check what AI says.",
+        "quiz": {
+          "question": "Is this AI answer correct or not?",
+          "options": ["It's correct", "It's not correct"],
+          "feedback_correct": "Great! Always double-check.",
+          "feedback_wrong": "Read the answer carefully again."
+        }
+      },
+      "blok4": {
+        "title": "When does AI help and when is it cheating?",
+        "duration": "5 minutes",
+        "intro": "AI is a tool, not a replacement for your own thinking.",
+        "quiz": {
+          "question": "Is this allowed or not?",
+          "options": ["This is allowed", "This is not allowed"],
+          "feedback_correct": "Good thinking!",
+          "feedback_wrong": "Think again about what the teacher wants you to learn."
+        }
+      }
+    }
+  },
+  "certificate": {
+    "title": "Congratulations!",
+    "text": "You have completed module 1.",
+    "name_label": "Name",
+    "download": "Download certificate"
+  },
+  "progress": {
+    "blok": "Block",
+    "van": "of"
+  }
+}
