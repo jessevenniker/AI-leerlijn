@@ -1,0 +1,21 @@
+---
+interface Props {
+  vraag: string;
+}
+const { vraag } = Astro.props;
+---
+
+<div
+  class="rounded-2xl p-5 my-6"
+  style="background-color: var(--mint-bg); border-left: 4px solid var(--turquoise);"
+>
+  <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">
+    Denkvraag
+  </p>
+  <p class="font-semibold text-base leading-snug" style="color: var(--navy);">
+    {vraag}
+  </p>
+  <p class="text-xs text-gray-400 mt-2">
+    Bespreek dit met een klasgenoot of schrijf je antwoord op.
+  </p>
+</div>

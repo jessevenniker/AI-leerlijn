@@ -1,6 +1,7 @@
 ---
 import ModuleLayout from '../../../layouts/ModuleLayout.astro';
 import QuizBlock from '../../../components/QuizBlock.astro';
+import ReflectieVraag from '../../../components/ReflectieVraag.astro';
 import { t, supportedLangs, type Lang } from '../../../i18n/index';
 
 export function getStaticPaths() {
@@ -9,52 +10,114 @@ export function getStaticPaths() {
 
 const lang = Astro.params.lang as Lang;
 const i18n = t(lang);
-const blok = i18n.module1.blocks.blok1;
 ---
 
 <ModuleLayout
-  title={blok.title}
+  title="Wat kan AI wel en niet?"
   currentBlock={1}
   totalBlocks={4}
   lang={lang}
   currentPath={Astro.url.pathname}
 >
-  <div class="mb-6">
-    <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">Blok 01</p>
-    <h1 class="text-2xl font-extrabold leading-snug mb-3" style="color: var(--navy);">{blok.title}</h1>
-    <p class="text-gray-500 text-base leading-relaxed">{blok.intro}</p>
+
+  <!-- Blok-label -->
+  <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">Blok 01 · 5 minuten</p>
+  <h1 class="text-2xl font-extrabold leading-snug mb-6" style="color: var(--navy);">Wat kan AI wel en niet?</h1>
+
+  <!-- ① Leeruitkomst -->
+  <div class="rounded-2xl p-4 mb-8 flex gap-3 items-start border border-gray-200 bg-white">
+    <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 text-white text-xs font-bold" style="background-color: var(--navy);">
+      ✓
+    </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wide mb-1 text-gray-400">Na dit blok kun je</p>
+      <p class="text-sm font-semibold leading-snug" style="color: var(--navy);">
+        Uitleggen dat AI antwoorden geeft op basis van patronen, maar niet zelf nadenkt zoals een mens.
+      </p>
+    </div>
   </div>
 
-  <img
-    src="/images/blok1/ai-hond.png"
-    alt="Kind op Curaçao dat AI-herkenning op een tablet ziet"
-    class="rounded-2xl w-full object-cover mb-6"
-    style="max-height: 220px;"
+  <!-- ② Scenario -->
+  <div class="mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-3 text-gray-400">Situatie</p>
+    <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
+      <img
+        src="/images/blok1/ai-hond.png"
+        alt="Kind op Curaçao dat AI-herkenning op een tablet ziet"
+        class="w-full object-cover"
+        style="max-height: 240px;"
+      />
+      <div class="p-5">
+        <p class="font-bold text-base mb-1" style="color: var(--navy);">
+          Je ziet een tablet die een hond herkent.
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          AI schrijft eronder: "Hond – Golden retriever – Betrouwbaarheid: 96%".
+          Maar hoe weet AI eigenlijk dat dit een hond is?
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ Uitleg -->
+  <div class="bg-white rounded-2xl border border-gray-200 p-5 mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-3 text-gray-400">Hoe werkt dat?</p>
+    <p class="text-sm text-gray-700 leading-relaxed mb-3">
+      AI heeft heel veel foto's van honden gezien. Daardoor leert het patronen herkennen:
+      oren, vacht, snuit, vorm. Elke keer dat het een patroon herkent, wordt het zekerder.
+    </p>
+    <p class="text-sm text-gray-700 leading-relaxed mb-3">
+      Maar AI <em>begrijpt</em> niet wat een hond is. Het maakt een voorspelling op basis van wat
+      het eerder heeft gezien. Dat is anders dan hoe een mens denkt.
+    </p>
+    <div class="rounded-xl p-4 mt-2" style="background-color: var(--cream-bg);">
+      <p class="text-sm font-semibold" style="color: var(--navy);">
+        Een mens snapt dat een hond een dier is dat blaft, speelt en gevoelens heeft.
+        AI ziet alleen pixels die overeenkomen met eerdere voorbeelden.
+      </p>
+    </div>
+  </div>
+
+  <!-- ④ Quiz met per-antwoord feedback -->
+  <QuizBlock
+    question="Hoe herkent AI een hond op een foto?"
+    options={[
+      "AI weet wat een hond is, net als een mens.",
+      "AI herkent patronen uit voorbeelden die het eerder heeft gezien.",
+      "AI gokt zomaar iets."
+    ]}
+    correctIndex={1}
+    feedbacks={[
+      "Dat klinkt logisch, maar AI begrijpt niet zoals een mens. AI herkent patronen — geen begrip.",
+      "Klopt. AI gebruikt patronen uit veel voorbeelden om te voorspellen wat er op een foto staat.",
+      "Niet helemaal. AI gokt niet zomaar, maar maakt een berekende voorspelling op basis van patronen."
+    ]}
+    feedbackCorrect="Klopt. AI gebruikt patronen uit veel voorbeelden."
+    feedbackWrong="Niet helemaal. Denk nog eens aan wat AI écht doet."
   />
 
-  <!-- Uitlegkaart -->
-  <div class="bg-white rounded-2xl border border-gray-200 p-5 mb-6">
-    <p class="text-xs font-semibold uppercase tracking-wide mb-3" style="color: var(--navy);">Wat is AI?</p>
-    <p class="text-sm text-gray-600 leading-relaxed">
-      AI is een systeem dat heel veel voorbeelden heeft gezien en daar patronen in herkent.
-      Het herkent een hond omdat het miljoenen foto's van honden heeft bekeken.
-      Maar het <em>begrijpt</em> niet wat een hond is — het herkent het patroon alleen.
+  <!-- ⑤ Reflectievraag -->
+  <ReflectieVraag
+    vraag="Waarom is het belangrijk om te weten dat AI niet echt begrijpt wat het zegt?"
+  />
+
+  <!-- ⑥ Blok-afsluiting -->
+  <div class="rounded-2xl p-5 mb-6 border border-gray-200 bg-white">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-3 text-gray-400">Wat heb je geleerd?</p>
+    <p class="text-sm text-gray-700 leading-relaxed">
+      AI kan heel handig zijn, maar het heeft geen menselijk verstand.
+      Het herkent patronen en maakt voorspellingen — het <em>denkt</em> niet.
+      Daarom blijf jij altijd degene die nadenkt over wat AI zegt.
     </p>
   </div>
 
-  <QuizBlock
-    question={blok.quiz.question}
-    options={blok.quiz.options}
-    correctIndex={1}
-    feedbackCorrect={blok.quiz.feedback_correct}
-    feedbackWrong={blok.quiz.feedback_wrong}
-  />
-
+  <!-- Volgende blok -->
   <a
     href={`/${lang}/module-1/blok-2/`}
-    class="block w-full text-center text-white font-bold text-base py-4 rounded-xl transition-opacity hover:opacity-90 active:scale-[0.99] mt-4"
+    class="block w-full text-center text-white font-bold text-base py-4 rounded-xl transition-opacity hover:opacity-90 active:scale-[0.99]"
     style="background-color: var(--navy);"
   >
     Volgende blok →
   </a>
+
 </ModuleLayout>
