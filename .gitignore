@@ -2,3 +2,13 @@ node_modules/
 dist/
 .env
 .DS_Store
+
+# Gegenereerde Astro cache
+.astro/
+
+# Editor-instellingen
+.vscode/
+.idea/
+
+# Claude Code lokale config
+.claude/
