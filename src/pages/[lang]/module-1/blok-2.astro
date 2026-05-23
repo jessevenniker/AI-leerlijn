@@ -1,6 +1,7 @@
 ---
 import ModuleLayout from '../../../layouts/ModuleLayout.astro';
 import QuizBlock from '../../../components/QuizBlock.astro';
+import ReflectieVraag from '../../../components/ReflectieVraag.astro';
 import { t, supportedLangs, type Lang } from '../../../i18n/index';
 
 export function getStaticPaths() {
@@ -8,56 +9,121 @@ export function getStaticPaths() {
 }
 
 const lang = Astro.params.lang as Lang;
-const i18n = t(lang);
-const blok = i18n.module1.blocks.blok2;
 ---
 
 <ModuleLayout
-  title={blok.title}
+  title="Hoe stel je een goede vraag?"
   currentBlock={2}
   totalBlocks={4}
   lang={lang}
   currentPath={Astro.url.pathname}
 >
+
+  <!-- Blok-label -->
+  <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">Blok 02 · 5 minuten</p>
+  <h1 class="text-2xl font-extrabold leading-snug mb-6" style="color: var(--navy);">Hoe stel je een goede vraag?</h1>
+
+  <!-- ① Leeruitkomst -->
+  <div class="rounded-2xl p-4 mb-8 flex gap-3 items-start border border-gray-200 bg-white">
+    <div class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 text-white text-xs font-bold" style="background-color: var(--navy);">
+      ✓
+    </div>
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wide mb-1 text-gray-400">Na dit blok kun je</p>
+      <p class="text-sm font-semibold leading-snug" style="color: var(--navy);">
+        Een duidelijke AI-vraag stellen met genoeg context, zodat AI beter begrijpt wat je nodig hebt.
+      </p>
+    </div>
+  </div>
+
+  <!-- ② Scenario -->
   <div class="mb-6">
-    <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color: var(--turquoise);">Blok 02</p>
-    <h1 class="text-2xl font-extrabold leading-snug mb-3" style="color: var(--navy);">{blok.title}</h1>
-    <p class="text-gray-500 text-base leading-relaxed">{blok.intro}</p>
+    <p class="text-xs font-semibold uppercase tracking-wide mb-3 text-gray-400">Situatie</p>
+    <div class="rounded-2xl overflow-hidden border border-gray-200 bg-white">
+      <img
+        src="/images/blok2/kind-typt.png"
+        alt="Kind typt een vraag in op de laptop in een schoolomgeving"
+        class="w-full object-cover"
+        style="max-height: 240px;"
+      />
+      <div class="p-5">
+        <p class="font-bold text-base mb-1" style="color: var(--navy);">
+          Een leerling typt: "Maak mijn werkstuk."
+        </p>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          AI maakt meteen een heel werkstuk. Maar is dat eigenlijk een goede manier om AI te gebruiken?
+          Wanneer helpt AI jou écht — en wanneer neemt het te veel van je over?
+        </p>
+      </div>
+    </div>
   </div>
 
-  <!-- Visuele promptvergelijking -->
-  <div class="grid grid-cols-2 gap-3 mb-6">
-    <div class="rounded-2xl p-4 border border-gray-200">
-      <p class="text-xs font-semibold mb-2" style="color: var(--coral);">Vage vraag</p>
-      <p class="text-sm text-gray-600 italic">"Schrijf iets"</p>
-      <p class="text-xs text-gray-400 mt-2">AI weet niet wat je wil.</p>
-    </div>
-    <div class="rounded-2xl p-4 border-2" style="border-color: var(--turquoise); background-color: var(--mint-bg);">
-      <p class="text-xs font-semibold mb-2" style="color: var(--turquoise);">Goede vraag</p>
-      <p class="text-sm text-gray-700 italic">"Schrijf een kort gedicht over de zee, voor kinderen van 10 jaar"</p>
+  <!-- ③ Uitleg -->
+  <div class="bg-white rounded-2xl border border-gray-200 p-5 mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-3 text-gray-400">Hoe werkt dat?</p>
+    <p class="text-sm text-gray-700 leading-relaxed mb-3">
+      AI werkt beter als jij duidelijk bent. Een goede AI-vraag — ook wel een <strong>prompt</strong> genoemd —
+      zegt wat je wilt, voor wie het is, hoe uitgebreid het moet zijn en waarvoor je het gebruikt.
+    </p>
+    <p class="text-sm text-gray-700 leading-relaxed mb-4">
+      Maar er is een verschil tussen AI die jou <em>helpt leren</em> en AI die jouw werk
+      <em>overneemt</em>. Als AI alles voor je doet, leer jij er niets van.
+    </p>
+
+    <!-- Visueel: vage vraag vs goede vraag -->
+    <div class="grid grid-cols-2 gap-3">
+      <div class="rounded-xl p-4 border border-gray-200">
+        <p class="text-xs font-semibold mb-2" style="color: var(--coral);">Vage vraag</p>
+        <p class="text-sm text-gray-600 italic">"Maak mijn werkstuk."</p>
+        <p class="text-xs text-gray-400 mt-2">AI neemt al het werk over.</p>
+      </div>
+      <div class="rounded-xl p-4 border-2" style="border-color: var(--turquoise); background-color: var(--mint-bg);">
+        <p class="text-xs font-semibold mb-2" style="color: var(--turquoise);">Goede vraag</p>
+        <p class="text-sm text-gray-700 italic">"Leg uit wat bedreigde schildpadden zijn, zodat ik daarna zelf mijn tekst kan schrijven."</p>
+      </div>
     </div>
   </div>
 
-  <img
-    src="/images/blok2/kind-typt.png"
-    alt="Kind typt een prompt in op de laptop in een schoolomgeving"
-    class="rounded-2xl w-full object-cover mb-6"
-    style="max-height: 220px;"
-  />
-
+  <!-- ④ Quiz met per-antwoord feedback -->
   <QuizBlock
-    question={blok.quiz.question}
-    options={blok.quiz.options}
+    question="Welke AI-vraag is het meest verantwoord?"
+    options={[
+      "Maak mijn hele werkstuk over schildpadden.",
+      "Leg in makkelijke taal uit wat bedreigde schildpadden zijn, zodat ik daarna zelf mijn tekst kan schrijven.",
+      "Geef mij een antwoord dat mijn leerkracht niet als AI herkent."
+    ]}
     correctIndex={1}
-    feedbackCorrect={blok.quiz.feedback_correct}
-    feedbackWrong={blok.quiz.feedback_wrong}
+    feedbacks={[
+      "Dit is niet zo verantwoord. AI neemt dan bijna al het werk over, waardoor jij minder zelf leert.",
+      "Klopt. Deze vraag gebruikt AI als hulpbron. Je krijgt uitleg, maar schrijft daarna zelf verder.",
+      "Dit is geen goed idee. Je gebruikt AI dan om iets te verbergen, niet om zelf beter te leren."
+    ]}
+    feedbackCorrect="Klopt. AI als hulpbron, jij als auteur."
+    feedbackWrong="Denk na: leer jij hier iets van, of doet AI het werk voor jou?"
   />
 
+  <!-- ⑤ Reflectievraag -->
+  <ReflectieVraag
+    vraag="Wanneer helpt AI jou écht met leren, en wanneer neemt AI te veel van jou over?"
+  />
+
+  <!-- ⑥ Blok-afsluiting -->
+  <div class="rounded-2xl p-5 mb-6 border border-gray-200 bg-white">
+    <p class="text-xs font-semibold uppercase tracking-wide mb-3 text-gray-400">Wat heb je geleerd?</p>
+    <p class="text-sm text-gray-700 leading-relaxed">
+      Een goede AI-vraag is duidelijk, eerlijk en helpend. AI mag je ondersteunen,
+      maar jij blijft eigenaar van je werk. Hoe beter jouw vraag, hoe nuttiger het antwoord —
+      en hoe meer jij er zelf van leert.
+    </p>
+  </div>
+
+  <!-- Volgende blok -->
   <a
     href={`/${lang}/module-1/blok-3/`}
-    class="block w-full text-center text-white font-bold text-base py-4 rounded-xl transition-opacity hover:opacity-90 active:scale-[0.99] mt-4"
+    class="block w-full text-center text-white font-bold text-base py-4 rounded-xl transition-opacity hover:opacity-90 active:scale-[0.99]"
     style="background-color: var(--navy);"
   >
     Volgende blok →
   </a>
+
 </ModuleLayout>
